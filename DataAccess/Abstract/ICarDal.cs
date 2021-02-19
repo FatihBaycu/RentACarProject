@@ -5,13 +5,15 @@ using Entities.Concrete;
 
 namespace DataAccess.Abstract
 {
-    interface ICarDal
+  public  interface ICarDal
     {
         List<Car> GetAll();
         void Add(Car car);
         void Update(Car car);
         void Delete(Car car);
-         List<Car>GetAllByBrands(int brandId);
-         //List<Brands>GetAllByBrands(Brands brands);
+        List<Car> GetAllByBrands(int brandId);
+        List<Car> GetById(int id);
+
+        List<Brands>GetAllByBrands2(Brands brands);
     }
 }

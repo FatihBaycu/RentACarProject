@@ -53,6 +53,16 @@ namespace DataAccess.Concrete.InMemory
             return _car.Where(p => p.BrandId==brandsId).ToList();
         }
 
+        public List<Car> GetById(int id)
+        {
+            return _car.Where(p => p.Id == id).ToList();
+        }
+
+        public List<Brands> GetAllByBrands2(Brands brands)
+        {
+            return _brands.Where(p => p.BrandId == brands.BrandId).ToList();
+        }
+
         public List<Car> GetAll()
         {
             return _car;
