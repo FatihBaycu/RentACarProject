@@ -5,6 +5,7 @@ using System.Text;
 using Business.Abstract;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.DTOs;
 
 namespace Business.Concrete
 {
@@ -40,8 +41,6 @@ namespace Business.Concrete
                 _iCarDal.Add(car);
                 Console.WriteLine("Kayıt Eklendi.\n");
             }
-
-
         }
         public void Update(Car car)
         {
@@ -53,13 +52,11 @@ namespace Business.Concrete
             {
                 Console.WriteLine("Günlük Fiyat 0 TL den büyük olmalıdır.");
             }
-
             else
             {
                 _iCarDal.Update(car);
                 Console.WriteLine("Kayıt Güncellendi.\n");
             }
-
         }
 
         public void Delete(Car car)
@@ -76,6 +73,11 @@ namespace Business.Concrete
         public List<Car> GetCarsByColorId(int colorId)
         {
             return _iCarDal.GetAll(p => p.ColorId == colorId);
+        }
+
+        public List<CarDetailsDto> getCarDetail()
+        {
+            return _iCarDal.getCarDetail();
         }
     }
 }

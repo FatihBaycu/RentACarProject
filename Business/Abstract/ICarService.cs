@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Text;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.DTOs;
 
 namespace Business.Abstract
 {
-    interface ICarService
+    public interface ICarService
     {
      List<Car> GetAll();
 
@@ -17,6 +18,7 @@ namespace Business.Abstract
       
       List<Car> GetCarsByBrandId(int brandId);
       List<Car> GetCarsByColorId(int colorId);
+      List<CarDetailsDto> getCarDetail();
 
     }
 }
