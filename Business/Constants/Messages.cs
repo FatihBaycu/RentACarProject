@@ -11,5 +11,9 @@ namespace Business.Constants
        public static string CarDeleted = "Araç Silindi.";
        public static string CarNotDeleted = "Araç Silinemedi.";
        public static string CarsListedByBrand = "Araçlar Renklere Göre Sıralandı";
+       public static string Listed = "Listelendi.";
+       public static string Added = "Eklendi.";
+       public static string Updated = "Güncellendi.";
+       public static string Deleted = "Silindi.";
    }
 }
