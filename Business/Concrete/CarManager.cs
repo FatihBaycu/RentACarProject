@@ -22,7 +22,11 @@ namespace Business.Concrete
 
         public IDataResult<List<Car>> GetAll()
         {
-            return new SuccessDataResult<List<Car>>(_iCarDal.GetAll());
+            if (DateTime.Now.Hour==22)
+            {
+                return new ErrorDataResult<List<Car>>(Messages.NotListed);
+            }
+            return new SuccessDataResult<List<Car>>(_iCarDal.GetAll(),Messages.Listed);
         }
 
 

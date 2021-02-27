@@ -227,7 +227,7 @@ namespace ConsoleUI
             Console.WriteLine("Listelencek Marka Id si giriniz: ");
             getId = Convert.ToInt32(Console.ReadLine());
 
-            foreach (var brands in brandManager.GetById(getId))
+            foreach (var brands in brandManager.GetById(getId).Data)
             {
                 Console.WriteLine(brands.BrandName);
             }
@@ -235,7 +235,7 @@ namespace ConsoleUI
 
         private static void BrandsGetAll(BrandManager brandManager)
         {
-            foreach (var brands in brandManager.GetAll())
+            foreach (var brands in brandManager.GetAll().Data)
             {
 
 
@@ -245,7 +245,7 @@ namespace ConsoleUI
         // CAR //
         private static void ColorTest(ColorManager colorManager)
         {
-            foreach (var colors in colorManager.GetAll())
+            foreach (var colors in colorManager.GetAll().Data)
             {
                 Console.WriteLine(colors.ColorName);
             }
@@ -257,7 +257,7 @@ namespace ConsoleUI
             int getId;
             Console.WriteLine("Listelencek Marka Id si giriniz: ");
             getId = Convert.ToInt32(Console.ReadLine());
-            foreach (var colors in colorManager.GetByColorId(getId))
+            foreach (var colors in colorManager.GetByColorId(getId).Data)
             {
                 Console.WriteLine(colors.ColorName);
             }
