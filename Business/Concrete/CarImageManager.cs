@@ -70,7 +70,7 @@ namespace Business.Concrete
         private IResult CheckCarImageCount(int carId)
         {
             var result = _carImageDal.GetAll(p => p.CarId == carId).Count;
-            if (result >= 2)
+            if (result >= 5)
             {
                 return new ErrorResult(Messages.CarImageLimited);
             }
