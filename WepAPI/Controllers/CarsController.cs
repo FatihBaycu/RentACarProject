@@ -30,12 +30,14 @@ namespace WepAPI.Controllers
             var result = _carService.GetAll();
             if (result.Success)
             {
-                return BadRequest(result);
+                return Ok(result);
             }
             else
             {
-                return Ok(result);
+                return BadRequest(result);
             }
+
+
         }
 
         [HttpPost("addcar")]

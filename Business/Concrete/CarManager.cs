@@ -26,13 +26,13 @@ namespace Business.Concrete
         {
             if (DateTime.Now.Hour==22)
             {
-                return new ErrorDataResult<List<Car>>(Messages.NotListed);
+                //return new ErrorDataResult<List<Car>>(Messages.NotListed);
+                return new ErrorDataResult<List<Car>>("Saat 22 de bakımdayız.");
             }
             return new SuccessDataResult<List<Car>>(_iCarDal.GetAll(),Messages.Listed);
         }
 
         [ValidationAspect(typeof(CarValidator))]
-
         public IResult Add(Car car)
         {
 
