@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Business.Abstract;
 using Business.Concrete;
+using Core.Entities.Concrete;
 using Core.Results;
 using DataAccess.Concrete.EntityFramework;
 using DataAccess.Concrete.InMemory;
@@ -25,7 +26,7 @@ namespace ConsoleUI
             ColorManager colorManager = new ColorManager(new EfColorDal());
             BrandManager brandManager = new BrandManager(new EfBrandDal());
             RentalManager rentalManager = new RentalManager(new EfRentalDal());
-            UserManager userManager = new UserManager(new EfUserDal());
+           // UserManager userManager = new UserManager(new EfUserDal());
             CustomerManager customerManager = new CustomerManager(new EfCustomerDal());
 
             GetRentalsDetailTest(rentalManager);
@@ -62,17 +63,17 @@ namespace ConsoleUI
             rentalManager.Delete(new Rental { Id = 6 });
         }
 
-        private static void UserTest(UserManager userManager)
-        {
-            userManager.Add(new User { Email = "e", FirstName = "a", LastName = "b", Password = "1" });
-            foreach (var users in userManager.GetAll().Data)
-            {
-                Console.WriteLine(users.FirstName);
-            }
+        //private static void UserTest(UserManager userManager)
+        //{
+        //    userManager.Add(new User { Email = "e", FirstName = "a", LastName = "b", Password = "1" });
+        //    foreach (var users in userManager.GetAll().Data)
+        //    {
+        //        Console.WriteLine(users.FirstName);
+        //    }
 
-            userManager.Update(new User { Id = 3, Email = "E", FirstName = "A", LastName = "B", Password = "1" });
-            userManager.Delete(new User { Id = 4 });
-        }
+        //    userManager.Update(new User { Id = 3, Email = "E", FirstName = "A", LastName = "B", Password = "1" });
+        //    userManager.Delete(new User { Id = 4 });
+        //}
 
         private static void CustomerTest(CustomerManager customerManager)
         {
@@ -338,7 +339,7 @@ namespace ConsoleUI
             }
             catch (Exception e)
             {
-                Console.WriteLine("Yanlış Değer Girdiniz!!\n");
+                Console.WriteLine("Yanlış Değer Girdiniz!!\n"+e.Message);
             }
 
         }
@@ -357,7 +358,7 @@ namespace ConsoleUI
             }
             catch (Exception e)
             {
-                Console.WriteLine("Yanlış Değer Girdiniz!!\n");
+                Console.WriteLine("Yanlış Değer Girdiniz!!\n"+e.Message);
             }
 
         }

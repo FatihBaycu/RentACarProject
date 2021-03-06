@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Text;
 using Core.Entities;
+using Core.Entities.Concrete;
 
 namespace DataAccess.Abstract
 {

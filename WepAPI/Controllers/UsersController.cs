@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Business.Abstract;
+using Core.Entities.Concrete;
 using Entities.Concrete;
 
 namespace WepAPI.Controllers
@@ -21,12 +22,12 @@ namespace WepAPI.Controllers
         }
 
 
-        [HttpGet("getall")]
-        public IActionResult GetAll()
-        {
-            var result = _ıUserService.GetAll();
-            return result.Success ? (IActionResult)BadRequest(result) : Ok(result);
-        }
+        //[HttpGet("getall")]
+        //public IActionResult GetAll()
+        //{
+        //    var result = _ıUserService.GetAll();
+        //    return result.Success ? (IActionResult)BadRequest(result) : Ok(result);
+        //}
 
         [HttpPost("adduser")]
         public IActionResult AddUser(User user)

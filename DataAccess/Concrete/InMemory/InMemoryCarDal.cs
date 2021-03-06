@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
+using Core.Entities.Concrete;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using Entities.DTOs;
@@ -51,9 +52,10 @@ namespace DataAccess.Concrete.InMemory
 
         public void Add(Car car)
         {
-            _car.Add(car);
+              _car.Add(car);
         }
 
+        
         public void Delete(Car car)
         {
             Car carToDelete = _car.SingleOrDefault(p => p.Id == car.Id);
@@ -103,6 +105,11 @@ namespace DataAccess.Concrete.InMemory
             carToUpdate.DailyPrice = car.DailyPrice;
             carToUpdate.Description = car.Description;
             carToUpdate.ModelYear = car.ModelYear;
+        }
+
+        public void Add(User entity)
+        {
+            throw new NotImplementedException();
         }
     }
 }

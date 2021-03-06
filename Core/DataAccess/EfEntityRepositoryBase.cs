@@ -4,6 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using Core.Entities;
+using Core.Entities.Concrete;
 using DataAccess.Abstract;
 using Microsoft.EntityFrameworkCore;
 
@@ -30,6 +31,8 @@ namespace Core.DataAccess
                 return context.Set<TEntity>().SingleOrDefault(filter);
             }
         }
+
+       
 
         public void Add(TEntity entity)
         {
