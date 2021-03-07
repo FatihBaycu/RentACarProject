@@ -5,11 +5,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Business.Abstract;
-using Core.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using DataAccess.Concrete.EntityFramework;
 using Entities.DTOs;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WepAPI.Controllers
 {
@@ -23,7 +23,7 @@ namespace WepAPI.Controllers
         {
             _carService = carService;
         }
-
+        //[Authorize(Roles="Cars.List")]
         [HttpGet("getall")]
         public IActionResult GetAll()
         {
@@ -77,5 +77,19 @@ namespace WepAPI.Controllers
             var result = _carService.getCarDetail();
             return result.Success ? (IActionResult)Ok(result) : BadRequest(result);
         }
+
+        [HttpPost("transaction")]
+        public IActionResult TransactionTest(Car car)
+        {
+            var result = _carService.TransactionalOperation(car);
+            if (result.Success)
+            {
+                return Ok(result.Message);
+            }
+
+            return BadRequest(result.Message);
+        }
+
+
     }
 }

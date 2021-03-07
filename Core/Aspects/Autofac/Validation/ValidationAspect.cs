@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Castle.DynamicProxy;
+using Core.CrossCuttingCorners.Validation;
 using Core.Utilities.Interseptors;
-using Core.Validation;
 using FluentValidation;
 
-namespace Core.Aspect.Autofac.Validation
+namespace Core.Aspects.Autofac.Validation
 {
     public class ValidationAspect : MethodInterception
     {

@@ -1,5 +1,6 @@
 ﻿using System;
-using Core.Results;
+using Core.Utilities.Results;
+
 namespace Core.Utilities.Business
 {
     public class BusinessRules

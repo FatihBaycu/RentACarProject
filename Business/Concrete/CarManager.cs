@@ -6,8 +6,10 @@ using Business.Abstract;
 using Business.BusinessAspects.Autofac;
 using Business.Constants;
 using Business.ValidationRules.FluentValidations;
-using Core.Aspect.Autofac.Validation;
-using Core.Results;
+using Core.Aspects.Autofac.Caching;
+using Core.Aspects.Autofac.Performance;
+using Core.Aspects.Autofac.Validation;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using Entities.DTOs;
@@ -22,7 +24,8 @@ namespace Business.Concrete
         {
             _iCarDal = iCarDal;
         }
-
+        [CacheAspect(duration: 10)]
+        [PerformanceAspect(5)]
         public IDataResult<List<Car>> GetAll()
         {
             if (DateTime.Now.Hour==22)
@@ -99,6 +102,13 @@ namespace Business.Concrete
         public IDataResult<List<CarDetailsDto>> getCarDetail()
         {
             return new SuccessDataResult<List<CarDetailsDto>>(_iCarDal.getCarDetail());
+        }
+
+        public IResult TransactionalOperation(Car car)
+        {
+            _iCarDal.Update(car);
+            _iCarDal.Add(car);
+            return new SuccessResult(Messages.Updated);
         }
     }
 }

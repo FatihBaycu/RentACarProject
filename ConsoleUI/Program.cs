@@ -7,7 +7,6 @@ using System.Windows.Forms;
 using Business.Abstract;
 using Business.Concrete;
 using Core.Entities.Concrete;
-using Core.Results;
 using DataAccess.Concrete.EntityFramework;
 using DataAccess.Concrete.InMemory;
 using Entities.Concrete;

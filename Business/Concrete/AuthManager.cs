@@ -4,9 +4,9 @@ using System.Text;
 using Business.Abstract;
 using Business.Constants;
 using Core.Entities.Concrete;
-using Core.Results;
+using Core.Utilities.Results;
 using Core.Utilities.Security.Hashing;
-using Core.Utilities.Security.Jwt;
+using Core.Utilities.Security.JWT;
 using Entities.Concrete;
 using Entities.DTOs;
 
