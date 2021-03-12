@@ -23,7 +23,12 @@ namespace WepAPI.Controllers
         public IActionResult GetAll()
         {
             var result = _customerService.GetAll();
-            return result.Success ? (IActionResult)BadRequest(result) : Ok(result);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            else { return (IActionResult)BadRequest(result); }
+
         }
 
         [HttpPost("addcustomer")]

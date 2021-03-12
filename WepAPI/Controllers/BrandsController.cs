@@ -24,7 +24,11 @@ namespace WepAPI.Controllers
         public IActionResult GetAll()
         {
             var result = _brandService.GetAll();
-            return result.Success ? (IActionResult)BadRequest(result) : Ok(result);
+            if (result.Success)
+            {
+                return (IActionResult)Ok(result);
+            }
+            return BadRequest(result);
         }
 
         [HttpPost("addbrand")]

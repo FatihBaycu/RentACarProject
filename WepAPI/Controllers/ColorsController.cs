@@ -24,7 +24,13 @@ namespace WepAPI.Controllers
         public IActionResult GetAll()
         {
             var result = _colorService.GetAll();
-            return result.Success ? (IActionResult)BadRequest(result) : Ok(result);
+            if (result.Success)
+                {
+                    return (IActionResult)Ok(result);
+                }
+
+                else { return BadRequest(result); }
+
         }
 
         [HttpPost("addcolor")]
