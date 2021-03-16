@@ -25,9 +25,24 @@ namespace WepAPI.Controllers
             var result = _rentalService.GetAll();
             if (result.Success) { return Ok(result); }
             else { return (IActionResult)BadRequest(result); }
+        }
+
+        [HttpGet("rentalstwo")]
+      public  IActionResult RentalsDetailTwo()
+        {
+            var result = _rentalService.getRentalsDetailsDtoTwo();
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            else
+            {
+                return BadRequest(result);
+            }
 
 
         }
+
 
         [HttpPost("addrental")]
         public IActionResult AddRental(Rental rental)
@@ -48,5 +63,7 @@ namespace WepAPI.Controllers
             var result = _rentalService.Delete(rental);
             return result.Success ? (IActionResult)Ok(result) : BadRequest(result);
         }
+
+
     }
 }

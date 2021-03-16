@@ -59,23 +59,40 @@ namespace WepAPI.Controllers
             var result = _carService.Delete(car);
             return result.Success ? (IActionResult)Ok(result) : BadRequest(result);
         }
-        [HttpPost("getcarsbybrandid")]
-        public IActionResult GetCarsByBrandId(int id)
+        
+        
+        [HttpGet("getcarsbybrandid")]
+        public IActionResult GetCarsByBrandId(int brandId)
         {
-            var result = _carService.GetCarsByBrandId(id);
-            return result.Success ? (IActionResult)Ok(result) : BadRequest(result);
+            var result = _carService.GetCarsByBrandId(brandId);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            else { return BadRequest(result); }
+
         }
-        [HttpPost("getcarsbycolorid")]
-        public IActionResult GetCarsByColorId(int id)
+        [HttpGet("getcarsbycolorid")]
+        public IActionResult GetCarsByColorId(int colorId)
         {
-            var result = _carService.GetCarsByColorId(id);
-            return result.Success ? (IActionResult)Ok(result) : BadRequest(result);
+            var result = _carService.GetCarsByColorId(colorId);
+            if (result.Success) { return Ok(result); }
+
+            else { return BadRequest(result); }
+
         }
-        [HttpPost("getcardetail")]
+        [HttpGet("getcardetail")]
         public IActionResult getCarDetail()
         {
             var result = _carService.getCarDetail();
-            return result.Success ? (IActionResult)Ok(result) : BadRequest(result);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            else
+            {
+                return BadRequest(result);
+            }
         }
 
         [HttpPost("transaction")]

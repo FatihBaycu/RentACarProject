@@ -28,7 +28,7 @@ namespace Business.Concrete
         [PerformanceAspect(5)]
         public IDataResult<List<Car>> GetAll()
         {
-            if (DateTime.Now.Hour==22)
+            if (DateTime.Now.Hour==3)
             {
                 //return new ErrorDataResult<List<Car>>(Messages.NotListed);
                 return new ErrorDataResult<List<Car>>("Saat 22 de bakımdayız.");

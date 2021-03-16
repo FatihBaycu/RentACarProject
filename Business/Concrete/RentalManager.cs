@@ -48,5 +48,10 @@ namespace Business.Concrete
             
             return new SuccessDataResult<List<RentalsDetailsDto>>(_rentalDal.getRentalsDetail(),true,Messages.Listed);
         }
+
+        public IDataResult<List<RentalsDetailsDtoTwo>> getRentalsDetailsDtoTwo()
+        {
+            return new SuccessDataResult<List<RentalsDetailsDtoTwo>>(_rentalDal.getRentalsDetailsDtoTwo(), true, Messages.Listed);
+        }
     }
 }
