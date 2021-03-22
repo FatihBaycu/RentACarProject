@@ -408,16 +408,17 @@ namespace ConsoleUI
                     "-----------------------------------------------------------------------------------------------------------------------");
             }
         }
-        private static void GetCarDetails(CarManager carManager)
-        {
-            foreach (var item in carManager.getCarDetail().Data)
-            {
-                Console.WriteLine("Araba Marka: " + item.BrandName + "\nAraba Model: " + item.CarName + "\nAraba Rengi: " +
-                                  item.ColorName + "\nAraba Günlük Fiyatı: " + item.DailyPrice +
-                                  "\n----------------------------------------------------");
-            }
+        //private static void GetCarDetails(CarManager carManager)
+        //{
+        //    foreach (var item in carManager.GetCarDetails().Data);
+        //    {
+        //        Console.WriteLine("Araba Marka: " + item.BrandName + "\nAraba Model: " + item.CarName + "\nAraba Rengi: " +
+        //                          item.ColorName + "\nAraba Günlük Fiyatı: " + item.DailyPrice +
+        //                          "\n----------------------------------------------------");
+        //    }
             // carManager.GetCarsByBrandId();
             //GetCarDetails(carManager);
+            //}
         }
     }
-}
+

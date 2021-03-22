@@ -27,5 +27,8 @@ namespace Business.Constants
        public static string SuccessfulLogin = "Başarıyla giriş yapıldı.";
        public static string UserAlreadyExists = "Kullanıcı zaten mecvut.";
        public static string AccessTokenCreated = "Acces Token oluşturuldu.";
-    }
+
+       public static string CarImageNumberError = "A car cannot have more than 5 images.";
+       public static string CarImageNotFound = "Car image not found";
+   }
 }

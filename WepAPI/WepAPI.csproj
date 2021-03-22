@@ -16,5 +16,13 @@
     <ProjectReference Include="..\DataAccess\DataAccess.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="wwwroot\Uploads\Images\CarImages\carText.png" />
+    <None Include="wwwroot\Uploads\Images\CarImages\fiat.jpg" />
+    <None Include="wwwroot\Uploads\Images\CarImages\defaultImage.png" />
+    <None Include="wwwroot\Uploads\Images\CarImages\FiatEgea.jpg" />
+    <None Include="wwwroot\Uploads\Images\CarImages\FordFocus.jpg" />
+  </ItemGroup>
+
 
 </Project>
