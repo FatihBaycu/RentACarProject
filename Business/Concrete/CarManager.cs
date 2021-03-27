@@ -40,28 +40,27 @@ namespace Business.Concrete
             return new SuccessDataResult<CarDetailsDto>(_iCarDal.GetCarDetailsById(c=>c.Id==carId));
         }
 
-        [SecuredOperation("car.add,admin")]
-        [ValidationAspect(typeof(CarValidator))]
+        //[SecuredOperation("car.add,admin")]
+        //[ValidationAspect(typeof(CarValidator))]
         public IResult Add(Car car)
         {
 
-            if (car.Description.Length <= 2)
-            {
-                Console.WriteLine("Açıklama uzunluğu 2 harfden uzun olmalıdır.");
-                return new ErrorResult(Messages.CarNotAdded);
-            }
-            else if (car.DailyPrice <= 1)
-            {
-                Console.WriteLine("Günlük Fiyat 0 TL den büyük olmalıdır.");
-                return new ErrorResult(Messages.CarNotAdded);
+            //if (car.Description.Length <= 2)
+            //{
+            //    Console.WriteLine("Açıklama uzunluğu 2 harfden uzun olmalıdır.");
+            //    return new ErrorResult(Messages.CarNotAdded);
+            //}
+            //else if (car.DailyPrice <= 1)
+            //{
+            //    Console.WriteLine("Günlük Fiyat 0 TL den büyük olmalıdır.");
+            //    return new ErrorResult(Messages.CarNotAdded);
 
-            }
+            //}
 
-            else
-            {
+            
                 _iCarDal.Add(car);
                 return new SuccessResult(Messages.CarAdded);
-            }
+            
         }
 
         public IResult Delete(Car car)
@@ -69,14 +68,14 @@ namespace Business.Concrete
 
             _iCarDal.Delete(car);
             return new SuccessResult(Messages.CarDeleted);
-        }
+        }//BU MANAGER 
 
         public IDataResult<List<Car>> GetAll()
         {
             if (DateTime.Now.Hour == 3)
             {
                 //return new ErrorDataResult<List<Car>>(Messages.NotListed);
-                return new ErrorDataResult<List<Car>>("Saat 22 de bakımdayız.");
+                return new ErrorDataResult<List<Car>>("Saat 3 de bakımdayız.");
             }
             return new SuccessDataResult<List<Car>>(_iCarDal.GetAll(), Messages.Listed);
         }

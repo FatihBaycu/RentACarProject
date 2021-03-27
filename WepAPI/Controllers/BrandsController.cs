@@ -37,7 +37,7 @@ namespace WepAPI.Controllers
             var result = _brandService.Add(brand);
             return result.Success ? (IActionResult)Ok(result) : BadRequest(result);
         }
-        [HttpPost("updatebrand")]
+        [HttpPut("updatebrand")]
         public IActionResult UpdateBrand(Brand brand)
         {
             var result = _brandService.Update(brand);
@@ -51,6 +51,19 @@ namespace WepAPI.Controllers
             return result.Success ? (IActionResult)Ok(result) : BadRequest(result);
         }
 
+        [HttpGet("getbrandbyid")]
+        public IActionResult GetBrandById(int brandId)
+        {
+            var result = _brandService.GetById(brandId);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            else
+            {
+                return BadRequest(result);
+            }
 
+        }
     }
 }

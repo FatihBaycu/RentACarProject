@@ -37,16 +37,18 @@ namespace WepAPI.Controllers
                 return BadRequest(result);
             }
 
-
+            
         }
 
         [HttpPost("addcar")]
         public IActionResult AddCar(Car car)
         {
             var result = _carService.Add(car);
-            return result.Success ? (IActionResult)Ok(result) : BadRequest(result);
+            if (result.Success) {                 return Ok(result);
+}
+            else { return BadRequest(result);}
         }
-        [HttpPost("updatecar")]
+        [HttpPut("updatecar")]
         public IActionResult UpdateCar(Car car)
         {
             var result = _carService.Update(car);

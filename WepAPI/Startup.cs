@@ -54,6 +54,7 @@ namespace WepAPI
             
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddCors();
+            
 
             var tokenOptions = Configuration.GetSection("TokenOptions").Get<TokenOptions>();
 
@@ -85,7 +86,9 @@ namespace WepAPI
             {
                 app.UseDeveloperExceptionPage();
             }
-            app.UseCors(builder => builder.WithOrigins("http://localhost:4200").AllowAnyHeader());
+            app.UseCors(builder => builder.WithOrigins("http://localhost:4200").AllowAnyHeader().AllowAnyMethod());
+
+            app.ConfigureCustomExceptionMiddleware();
 
             app.UseHttpsRedirection();
 

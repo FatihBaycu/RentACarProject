@@ -6,6 +6,7 @@ using Business.Constants;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.DTOs;
 
 namespace Business.Concrete
 {
@@ -40,6 +41,12 @@ namespace Business.Concrete
         {
             _customerDal.Delete(customer);
             return new SuccessResult(Messages.Deleted);
+        }
+
+        public IDataResult<List<CustomerDetailsDto>> getCustomerDetails()
+        {
+            return new SuccessDataResult<List<CustomerDetailsDto>>(_customerDal.getCustomerDetails(), true, Messages.Listed);
+           
         }
     }
 }

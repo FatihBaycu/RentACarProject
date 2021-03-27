@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Text;
 using Business.Abstract;
 using Business.Constants;
+using Business.ValidationRules.FluentValidations;
+using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -17,11 +19,20 @@ namespace Business.Concrete
         {
             _colorDal = colorDal;
         }
-
+        [ValidationAspect(typeof(ColorValidator))]
         public IResult Add(Color color)
         {
-            _colorDal.Add(color);
+            if (color.ColorName.Length<2)
+            {
+                return new ErrorResult("Renk adı  En az 3 harfli olmalıdır.");
+            }
+            else
+            {
+                _colorDal.Add(color);
             return new SuccessResult(Messages.Added);
+                
+            }
+            
         }
         public IResult Update(Color color)
         {
@@ -42,9 +53,9 @@ namespace Business.Concrete
             return new DataResult<List<Color>>(_colorDal.GetAll(),true,Messages.Listed);
         }
 
-        public IDataResult<List<Color>> GetByColorId(int colorId)
+        public IDataResult<Color> GetByColorId(int colorId)
         {
-            return new DataResult<List<Color>>(_colorDal.GetAll(p => p.ColorId == colorId),true,Messages.Listed);
+            return new SuccessDataResult<Color>(_colorDal.Get(p => p.ColorId == colorId),true,Messages.Listed);
         }
 
      

@@ -127,6 +127,8 @@ namespace DataAccess.Concrete.EntityFramework
                         ModelYear = c.ModelYear,
                         ColorName = co.ColorName,
                         DailyPrice = c.DailyPrice,
+                        BrandId = c.BrandId,
+                        ColorId = c.ColorId,
                         ImagePath = (from a in context.CarImages where a.CarId == c.Id select a.ImagePath).FirstOrDefault()
                     };
 

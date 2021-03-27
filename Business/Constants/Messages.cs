@@ -30,5 +30,6 @@ namespace Business.Constants
 
        public static string CarImageNumberError = "A car cannot have more than 5 images.";
        public static string CarImageNotFound = "Car image not found";
-   }
+       public static string CarNotAvaible="Araç Müsait Değil";
+    }
 }

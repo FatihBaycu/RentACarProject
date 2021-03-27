@@ -42,7 +42,6 @@ namespace Core.DataAccess
                 context.SaveChanges();
             }
         }
-
         public void Update(TEntity entity)
         {
             using (TContext context = new TContext())

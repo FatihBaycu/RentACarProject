@@ -51,5 +51,19 @@ namespace WepAPI.Controllers
             return result.Success ? (IActionResult)Ok(result) : BadRequest(result);
         }
 
+        [HttpGet("getcustomerdetails")]
+        public IActionResult GetCustomerDetails()
+        {
+            var result = _customerService.getCustomerDetails();
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            else
+            {
+                return BadRequest(result);
+            }
+        }
+
     }
 }
