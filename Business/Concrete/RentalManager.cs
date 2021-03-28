@@ -53,6 +53,9 @@ namespace Business.Concrete
             return new SuccessResult(Messages.Deleted);
         }
 
+
+        
+        
         public IDataResult<List<RentalsDetailsDto>> getRentalsDetail()
         {
             
@@ -62,6 +65,18 @@ namespace Business.Concrete
         public IDataResult<List<RentalsDetailsDtoTwo>> getRentalsDetailsDtoTwo()
         {
             return new SuccessDataResult<List<RentalsDetailsDtoTwo>>(_rentalDal.getRentalsDetailsDtoTwo(), true, Messages.Listed);
+        }
+
+        public IDataResult<Rental> GetById(int rentalId)
+        {
+            var result = _rentalDal.Get(p => p.Id == rentalId);
+            return new SuccessDataResult<Rental>(result,true,Messages.Listed);
+        }
+
+        public IDataResult<List<Rental>> GetRentalByCarId(int carId)
+        {
+            var result = _rentalDal.GetAll(p => p.CarId == carId);
+            return new SuccessDataResult<List<Rental>>(result);
         }
 
 

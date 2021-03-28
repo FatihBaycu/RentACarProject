@@ -82,8 +82,8 @@ namespace ConsoleUI
                 Console.WriteLine("Şirket Adı: " + customers.CompanyName + "User Id: " + customers.UserId);
             }
 
-            customerManager.Update(new Customer { CompanyName = " X Şirketi", UserId = 6, Id = 7 });
-            customerManager.Delete(new Customer { Id = 6 });
+            customerManager.Update(new Customer { CompanyName = " X Şirketi", UserId = 6, CustomerId = 7 });
+            customerManager.Delete(new Customer { CustomerId = 6 });
         }
 
         private static void Test(CarManager carManager, ColorManager colorManager, BrandManager brandManager)
@@ -227,10 +227,10 @@ namespace ConsoleUI
             Console.WriteLine("Listelencek Marka Id si giriniz: ");
             getId = Convert.ToInt32(Console.ReadLine());
 
-            foreach (var brands in brandManager.GetById(getId).Data)
-            {
-                Console.WriteLine(brands.BrandName);
-            }
+            //foreach (var brands in brandManager.GetById(getId).Data)
+            //{
+            //    Console.WriteLine(brands.BrandName);
+            //}
         }
 
         private static void BrandsGetAll(BrandManager brandManager)
@@ -257,10 +257,10 @@ namespace ConsoleUI
             int getId;
             Console.WriteLine("Listelencek Marka Id si giriniz: ");
             getId = Convert.ToInt32(Console.ReadLine());
-            foreach (var colors in colorManager.GetByColorId(getId).Data)
-            {
-                Console.WriteLine(colors.ColorName);
-            }
+            //foreach (var colors in colorManager.GetByColorId(getId).Data)
+            //{
+            //    Console.WriteLine(colors.ColorName);
+            //}
         }
 
         private static void DeleteColor(ColorManager colorManager)

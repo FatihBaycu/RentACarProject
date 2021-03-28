@@ -119,7 +119,7 @@ namespace DataAccess.Concrete.EntityFramework
                         on c.ColorId equals co.ColorId
                     select new CarDetailsDto
                     {
-                      
+
                         CarId = c.Id,
                         BrandName = b.BrandName,
                         CarName = c.CarName,
@@ -153,6 +153,9 @@ namespace DataAccess.Concrete.EntityFramework
                         ModelYear = c.ModelYear,
                         ColorName = co.ColorName,
                         DailyPrice = c.DailyPrice,
+                        ColorId = c.ColorId,
+                        BrandId = c.BrandId,
+                        CarName = c.CarName,
                         ImagePath = (from a in context.CarImages where a.CarId == c.Id select a.ImagePath).FirstOrDefault()
                     };
 

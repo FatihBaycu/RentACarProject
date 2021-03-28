@@ -50,7 +50,7 @@ namespace WepAPI.Controllers
             var result = _rentalService.Add(rental);
             return result.Success ? (IActionResult)Ok(result) : BadRequest(result);
         }
-        [HttpPost("updaterental")]
+        [HttpPut("updaterental")]
         public IActionResult UpdateRental(Rental rental)
         {
             var result = _rentalService.Update(rental);
@@ -65,5 +65,18 @@ namespace WepAPI.Controllers
         }
 
 
+        [HttpGet("getrentalsbycarid")]
+        public IActionResult GetRentalByCarId(int carId)
+        {
+            var result = _rentalService.GetRentalByCarId(carId);
+            return result.Success ? (IActionResult) Ok(result) : BadRequest(result);
+        }
+
+        [HttpGet("getrentalbyid")]
+        public IActionResult GetRentalById(int rentalId)
+        {
+            var result = _rentalService.GetById(rentalId);
+            return result.Success ? (IActionResult)Ok(result) : BadRequest(result);
+        }
     }
 }
