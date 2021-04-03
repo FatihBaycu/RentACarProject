@@ -35,7 +35,7 @@ namespace WepAPI.Controllers
             var result = _ıUserService.Add(user);
             return result.Success ? (IActionResult)Ok(result) : BadRequest(result);
         }
-        [HttpPost("updateuser")]
+        [HttpPut("updateuser")]
         public IActionResult UpdateUser(User user)
         {
             var result = _ıUserService.Update(user);

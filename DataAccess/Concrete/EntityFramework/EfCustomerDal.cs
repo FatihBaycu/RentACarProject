@@ -57,5 +57,27 @@ namespace DataAccess.Concrete.EntityFramework
                 return result.FirstOrDefault();
             }
         }
+
+       public CustomerDetailsDto getCustomerByEmail(Expression<Func<CustomerDetailsDto, bool>> filter)
+        {
+            using (RentACarContext context=new RentACarContext())
+            {
+                var result = from customer in context.Customers
+                    join user in context.Users
+                        on customer.UserId equals user.Id
+                    select new CustomerDetailsDto
+                    {
+                        CustomerId = customer.CustomerId,
+                        UserId = user.Id,
+                        FirstName = user.FirstName,
+                        LastName = user.LastName,
+                        Email = user.Email,
+                        CompanyName = customer.CompanyName
+                    };
+                return result.SingleOrDefault(filter);
+            }
+        }
+
+       
     }
 }
