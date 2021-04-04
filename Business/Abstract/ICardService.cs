@@ -13,5 +13,8 @@ namespace Business.Abstract
         IResult Delete(Card card);
         IDataResult<List<Card>> GetAll();
         IDataResult<Card> GetById(int cardId);
+        IDataResult<List<Card>> GetCardByCustomerId(int customer);
+
+
     }
 }

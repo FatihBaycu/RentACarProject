@@ -62,5 +62,20 @@ namespace WepAPI.Controllers
            }
 
        }
+
+       [HttpGet("getcardsbycustomerid")]
+       public IActionResult GetCardsByCustomerId(int customerId)
+       {
+           var result = _iCardService.GetCardByCustomerId(customerId);
+           
+           if (result.Success)
+           {
+               return Ok(result);
+           }
+           else
+           {
+               return BadRequest(result);
+           }
+       }
     }
 }

@@ -48,5 +48,11 @@ namespace Business.Concrete
         {
            return new DataResult<Card>(_iCardDal.Get(p => p.id == cardId), true, Messages.Listed);
         }
-    }
+
+        public IDataResult<List<Card>> GetCardByCustomerId(int customerId)
+        {
+            return new SuccessDataResult<List<Card>>(_iCardDal.GetAll(p => p.CustomerId == customerId), true,
+                Messages.Listed);
+        }
+   }
 }

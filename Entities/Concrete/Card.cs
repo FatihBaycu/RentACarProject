@@ -11,7 +11,7 @@ namespace Entities.Concrete
         public string CardNumber { get; set; }
         public string CardOnName { get; set; }
         public string CardValidDate { get; set; }
-        public int CardCvv { get; set; }
+        public string CardCvv { get; set; }
         public int CustomerId { get; set; }
         public string cardType { get; set; }
 
