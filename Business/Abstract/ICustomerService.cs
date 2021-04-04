@@ -17,5 +17,6 @@ namespace Business.Abstract
         IDataResult<CustomerDetailsDto> getCustomerDetailById(int customerId);
         IDataResult<CustomerDetailsDto> getCustomerByEmail(string email);
 
+        IDataResult<Customer> getById(int customerId);
     }
 }

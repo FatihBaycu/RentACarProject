@@ -31,7 +31,8 @@ namespace DataAccess.Concrete.EntityFramework
                         Email = user.Email,
                         UserId = user.Id,
                         CustomerId = customer.CustomerId,
-                        Status = user.Status
+                        Status = user.Status,
+                        CustomerFindexPoint = (int)customer.CustomerFindexPoint
                     };
                 return result.ToList();
             }
@@ -52,7 +53,8 @@ namespace DataAccess.Concrete.EntityFramework
                         Email = user.Email,
                         UserId = user.Id,
                         CustomerId = customer.CustomerId,
-                        Status = user.Status
+                        Status = user.Status,
+                        CustomerFindexPoint = (int) customer.CustomerFindexPoint
                     };
                 return result.FirstOrDefault();
             }
@@ -72,7 +74,8 @@ namespace DataAccess.Concrete.EntityFramework
                         FirstName = user.FirstName,
                         LastName = user.LastName,
                         Email = user.Email,
-                        CompanyName = customer.CompanyName
+                        CompanyName = customer.CompanyName,
+                        CustomerFindexPoint = (int) customer.CustomerFindexPoint
                     };
                 return result.SingleOrDefault(filter);
             }

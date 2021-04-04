@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Castle.DynamicProxy.Generators.Emitters;
 using Core.Entities;
 
 namespace Entities.DTOs
@@ -16,5 +17,6 @@ namespace Entities.DTOs
         public byte[] PasswordSalt { get; set; }
         public byte[] PasswordHash { get; set; }
         public bool Status { get; set; }
+        public int CustomerFindexPoint { get; set; }
     }
 }

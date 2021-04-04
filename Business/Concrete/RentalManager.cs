@@ -7,6 +7,7 @@ using Business.Constants;
 using Core.Utilities.Business;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
+using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
 using Entities.DTOs;
 
@@ -15,13 +16,19 @@ namespace Business.Concrete
     public class RentalManager : IRentalService
     {
         private IRentalDal _rentalDal;
+        private ICarService _iCarService;
+        private ICustomerService _iCustomerService;
 
-        public RentalManager(IRentalDal rentalDal)
+        public RentalManager(IRentalDal rentalDal,ICarService iCarService,ICustomerService iCustomerService)
         {
             _rentalDal = rentalDal;
+            _iCarService=iCarService;
+            _iCustomerService = iCustomerService;
+
         }
 
-        
+     
+
         public IDataResult<List<Rental>> GetAll()
         {
             return new SuccessDataResult<List<Rental>>(_rentalDal.GetAll(), true, Messages.Listed);
@@ -34,7 +41,11 @@ namespace Business.Concrete
             //    return new ErrorResult("Araç Seçili Tarihlerde Kullanımda.");
             //}
 
-            var result = BusinessRules.Run(WillLeasedCarAvailable(rental.CarId));
+            var result = BusinessRules.Run(WillLeasedCarAvailable(rental.CarId), FindeksScoreCheck(rental.CustomerId,rental.CarId));
+            if (result!=null)
+            {
+                return result;
+            }
             _rentalDal.Add(rental);
             return new Result(true);
         }
@@ -94,6 +105,21 @@ namespace Business.Concrete
                 return new ErrorResult(Messages.CarNotAvaible);
             else
                 return new SuccessResult();
+        }
+
+        private IResult FindeksScoreCheck(int customerId, int carId)
+        {
+            var customerFindexPoint = _iCustomerService.getById(customerId).Data.CustomerFindexPoint;
+
+            if (customerFindexPoint == 0)
+                return new ErrorResult("Findex puanınız 0");
+
+            var carFindexPoint = _iCarService.GetById(carId).Data.CarFindexPoint;
+
+            if (customerFindexPoint < carFindexPoint)
+                return new ErrorResult("Findex puanınız bu aracı kiralamak için yetersiz.");
+
+            return new SuccessResult();
         }
 
     }

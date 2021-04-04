@@ -23,7 +23,7 @@ namespace DataAccess.Concrete.EntityFramework
                     join b in context.Brands on ca.BrandId equals b.BrandId
                     join co in context.Colors on ca.ColorId equals co.ColorId
                     select new CarDetailsDto
-                        { CarName = ca.CarName, BrandName = b.BrandName, ColorName = co.ColorName, DailyPrice = ca.DailyPrice,CarId = ca.Id,ModelYear = ca.ModelYear,BrandId = ca.BrandId};
+                        { CarName = ca.CarName, BrandName = b.BrandName, ColorName = co.ColorName, DailyPrice = ca.DailyPrice,CarId = ca.Id,ModelYear = ca.ModelYear,BrandId = ca.BrandId,CarFindexPoint = ca.CarFindexPoint};
 
                 return result.ToList();
             }
@@ -129,6 +129,7 @@ namespace DataAccess.Concrete.EntityFramework
                         DailyPrice = c.DailyPrice,
                         BrandId = c.BrandId,
                         ColorId = c.ColorId,
+                        CarFindexPoint=c.CarFindexPoint,
                         ImagePath = (from a in context.CarImages where a.CarId == c.Id select a.ImagePath).FirstOrDefault()
                     };
 
@@ -156,6 +157,7 @@ namespace DataAccess.Concrete.EntityFramework
                         ColorId = c.ColorId,
                         BrandId = c.BrandId,
                         CarName = c.CarName,
+                        CarFindexPoint = c.CarFindexPoint,
                         ImagePath = (from a in context.CarImages where a.CarId == c.Id select a.ImagePath).FirstOrDefault()
                     };
 

@@ -58,5 +58,10 @@ namespace Business.Concrete
         {
             return new SuccessDataResult<CustomerDetailsDto>(_customerDal.getCustomerByEmail(p => p.Email == email));
         }
+
+        public IDataResult<Customer> getById(int customerId)
+        {
+            return new SuccessDataResult<Customer>(_customerDal.Get(p => p.CustomerId == customerId));
+        }
     }
 }

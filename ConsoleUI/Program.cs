@@ -24,11 +24,11 @@ namespace ConsoleUI
             CarManager carManager = new CarManager(new EfCarDal());
             ColorManager colorManager = new ColorManager(new EfColorDal());
             BrandManager brandManager = new BrandManager(new EfBrandDal());
-            RentalManager rentalManager = new RentalManager(new EfRentalDal());
+            //RentalManager rentalManager = new RentalManager(new EfRentalDal());
            // UserManager userManager = new UserManager(new EfUserDal());
             CustomerManager customerManager = new CustomerManager(new EfCustomerDal());
 
-            GetRentalsDetailTest(rentalManager);
+           // GetRentalsDetailTest(rentalManager);
 
          
 

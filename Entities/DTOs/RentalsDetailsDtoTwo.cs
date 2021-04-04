@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Castle.DynamicProxy.Generators.Emitters;
 using Core.Entities;
 
 namespace Entities.DTOs
@@ -18,6 +19,7 @@ namespace Entities.DTOs
 
         //Customer Table
         public string CompanyName { get; set; }
+        public int CustomerFindexPoint { get; set; }
 
         //User Table
 
