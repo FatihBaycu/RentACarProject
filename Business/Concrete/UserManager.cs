@@ -52,6 +52,11 @@ namespace Business.Concrete
         {
             return _userDal.Get(u => u.Email == email);
         }
-       
+
+        public IDataResult<User> GetById(int id)
+        {
+            var result = _userDal.Get(p => p.Id == id);
+            return new SuccessDataResult<User>(result);
+        }
     }
 }

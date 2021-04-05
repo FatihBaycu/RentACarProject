@@ -16,11 +16,12 @@ namespace Business.Concrete
     {
         private IUserService _userService;
         private ITokenHelper _tokenHelper;
-
-        public AuthManager(IUserService userService, ITokenHelper tokenHelper)
+        private ICustomerService _iCustomerService;
+        public AuthManager(IUserService userService, ITokenHelper tokenHelper,ICustomerService _customerService)
         {
             _userService = userService;
             _tokenHelper = tokenHelper;
+            _iCustomerService = _customerService;
         }
 
         public IDataResult<User> Register(UserForRegisterDto userForRegisterDto, string password)
@@ -54,6 +55,43 @@ namespace Business.Concrete
             }
 
             return new SuccessDataResult<User>(userToCheck,true, Messages.SuccessfulLogin);
+        }
+
+        public IDataResult<UserForUpdateDto> Update(UserForUpdateDto userForUpdate)
+        {
+            var currentCustomer = _userService.GetById(userForUpdate.UserId);
+
+            var user = new User
+            {
+                Id = userForUpdate.UserId,
+                Email = userForUpdate.Email,
+                FirstName = userForUpdate.FirstName,
+                LastName = userForUpdate.LastName,
+                PasswordHash = currentCustomer.Data.PasswordHash,
+                PasswordSalt = currentCustomer.Data.PasswordSalt
+            };
+            byte[] passwordHash, passwordSalt;
+
+            if (userForUpdate.Password != "")
+            {
+                HashingHelper.CreatePasswordHash(userForUpdate.Password, out passwordHash, out passwordSalt);
+
+                user.PasswordHash = passwordHash;
+                user.PasswordSalt = passwordSalt;
+            }
+
+            _userService.Update(user);
+
+            var customer = new Customer
+            {
+                CustomerId = userForUpdate.Id,
+                UserId = userForUpdate.UserId,
+                CompanyName = userForUpdate.CompanyName
+            };
+
+            _iCustomerService.Update(customer);
+
+            return new SuccessDataResult<UserForUpdateDto>(userForUpdate, "Müşteri Güncellendi.");
         }
 
         public IResult UserExists(string email)

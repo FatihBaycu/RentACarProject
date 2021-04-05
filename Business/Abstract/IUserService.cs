@@ -17,9 +17,10 @@ namespace Business.Abstract
 
        List<OperationClaim> GetClaims(User user);
        User GetByMail(string email);
+       IDataResult<User> GetById(int id);
 
-        //IDataResult<List<User>> GetCarsByBrandId(int brandId);
-        //IDataResult<List<User>> GetCarsByColorId(int colorId);
-        //IDataResult<List<CarDetailsDto>> getCarDetail();
-    }
+       //IDataResult<List<User>> GetCarsByBrandId(int brandId);
+       //IDataResult<List<User>> GetCarsByColorId(int colorId);
+       //IDataResult<List<CarDetailsDto>> getCarDetail();
+   }
 }
