@@ -44,6 +44,17 @@ namespace Business.Concrete
             return new SuccessResult(Messages.Deleted);
         }
 
+        public IResult UpdateInfos(User user)
+        {
+            var userToUpdate = GetById(user.Id).Data;
+            userToUpdate.FirstName = user.FirstName;
+            userToUpdate.LastName = user.LastName;
+            userToUpdate.Email = user.Email;
+          //  _userDal.Update(userToUpdate);
+          Update(userToUpdate);
+            return new SuccessResult();
+        }
+
         public List<OperationClaim> GetClaims(User user)
         {
             return _userDal.GetClaims(user);

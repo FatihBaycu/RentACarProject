@@ -56,6 +56,10 @@ namespace Business.Concrete
 
             return new SuccessDataResult<User>(userToCheck,true, Messages.SuccessfulLogin);
         }
+        
+        
+        
+        
 
         public IDataResult<UserForUpdateDto> Update(UserForUpdateDto userForUpdate)
         {
@@ -67,19 +71,9 @@ namespace Business.Concrete
                 Email = userForUpdate.Email,
                 FirstName = userForUpdate.FirstName,
                 LastName = userForUpdate.LastName,
-                PasswordHash = currentCustomer.Data.PasswordHash,
-                PasswordSalt = currentCustomer.Data.PasswordSalt
+                
             };
-            byte[] passwordHash, passwordSalt;
-
-            if (userForUpdate.Password != "")
-            {
-                HashingHelper.CreatePasswordHash(userForUpdate.Password, out passwordHash, out passwordSalt);
-
-                user.PasswordHash = passwordHash;
-                user.PasswordSalt = passwordSalt;
-            }
-
+        
             _userService.Update(user);
 
             var customer = new Customer
@@ -108,6 +102,25 @@ namespace Business.Concrete
             var claims = _userService.GetClaims(user);
             var accessToken = _tokenHelper.CreateToken(user, claims);
             return new SuccessDataResult<AccessToken>(accessToken, Messages.AccessTokenCreated);
+        }
+
+        public IResult ChangePassword(ChangePasswordDto changePasswordDto)
+        {
+            byte[] passwordHash, passwordSalt;
+            var userToCheck = _userService.GetById(changePasswordDto.UserId).Data;
+            if (userToCheck == null)
+            {
+                return new ErrorResult(Messages.UserNotFound);
+            }
+            if (!HashingHelper.VerifyPasswordHash(changePasswordDto.OldPassword, userToCheck.PasswordHash, userToCheck.PasswordSalt))
+            {
+                return new ErrorResult(Messages.PasswordError);
+            }
+            HashingHelper.CreatePasswordHash(changePasswordDto.NewPassword, out passwordHash, out passwordSalt);
+            userToCheck.PasswordHash = passwordHash;
+            userToCheck.PasswordSalt = passwordSalt;
+            _userService.Update(userToCheck);
+            return new SuccessResult("Parola Değişti.");
         }
     }
 }

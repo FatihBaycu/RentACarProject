@@ -14,11 +14,11 @@ namespace WepAPI.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
-        private IUserService _ıUserService;
+        private IUserService _iUserService;
 
         public UsersController(IUserService ıUserService)
         {
-            _ıUserService = ıUserService;
+            _iUserService = ıUserService;
         }
 
 
@@ -32,21 +32,44 @@ namespace WepAPI.Controllers
         [HttpPost("adduser")]
         public IActionResult AddUser(User user)
         {
-            var result = _ıUserService.Add(user);
+            var result = _iUserService.Add(user);
             return result.Success ? (IActionResult)Ok(result) : BadRequest(result);
         }
-        [HttpPut("updateuser")]
+        [HttpPost("updateuser")]
         public IActionResult UpdateUser(User user)
         {
-            var result = _ıUserService.Update(user);
+            var result = _iUserService.Update(user);
             return result.Success ? (IActionResult)Ok(result) : BadRequest(result);
         }
 
         [HttpPost("deleteuser")]
         public IActionResult DeleteUser(User user)
         {
-            var result = _ıUserService.Delete(user);
+            var result = _iUserService.Delete(user);
             return result.Success ? (IActionResult)Ok(result) : BadRequest(result);
+        }
+
+        [HttpPut("updateinfos")]
+        public IActionResult UpdateInfos(User user)
+        {
+            var result = _iUserService.UpdateInfos(user);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+
+        [HttpGet("getbyid")]
+        public IActionResult GetById(int id)
+        {
+            var result = _iUserService.GetById(id);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
         }
     }
 }
