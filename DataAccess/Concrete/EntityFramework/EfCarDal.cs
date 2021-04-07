@@ -117,9 +117,9 @@ namespace DataAccess.Concrete.EntityFramework
                         on c.BrandId equals b.BrandId
                     join co in context.Colors
                         on c.ColorId equals co.ColorId
+                        let image = (from carImage in context.CarImages where c.Id == carImage.CarId select carImage.ImagePath)
                     select new CarDetailsDto
                     {
-
                         CarId = c.Id,
                         BrandName = b.BrandName,
                         CarName = c.CarName,
@@ -130,7 +130,7 @@ namespace DataAccess.Concrete.EntityFramework
                         BrandId = c.BrandId,
                         ColorId = c.ColorId,
                         CarFindexPoint=c.CarFindexPoint,
-                        ImagePath = (from a in context.CarImages where a.CarId == c.Id select a.ImagePath).FirstOrDefault()
+                        ImagePath = image.Any() ? image.FirstOrDefault() : new CarImage { ImagePath = "Uploads/Images/CarImages/defaultImage.png" }.ImagePath
                     };
 
                 return result.ToList();
@@ -146,6 +146,7 @@ namespace DataAccess.Concrete.EntityFramework
                         on c.BrandId equals b.BrandId
                     join co in context.Colors
                         on c.ColorId equals co.ColorId
+                    let image = (from carImage in context.CarImages where c.Id == carImage.CarId select carImage.ImagePath)
                     select new CarDetailsDto
                     {
                         CarId = c.Id,
@@ -158,7 +159,7 @@ namespace DataAccess.Concrete.EntityFramework
                         BrandId = c.BrandId,
                         CarName = c.CarName,
                         CarFindexPoint = c.CarFindexPoint,
-                        ImagePath = (from a in context.CarImages where a.CarId == c.Id select a.ImagePath).FirstOrDefault()
+                        ImagePath = image.FirstOrDefault()
                     };
 
                 return result.FirstOrDefault();

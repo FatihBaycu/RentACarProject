@@ -31,7 +31,15 @@ namespace Business.Concrete
 
         public IDataResult<List<CarImage>> GetCarImageByCarId(int carId)
         {
-        return new SuccessDataResult<List<CarImage>>(_carImageDal.GetAll(p => p.CarId == carId), true, Messages.Listed);
+            var getListByCarId = _carImageDal.GetAll(car => car.CarId == carId);
+
+            if (getListByCarId.Count > 0)
+                return new SuccessDataResult<List<CarImage>>(getListByCarId);
+
+            var path = "Uploads/Images/CarImages/defaultImage.png";
+            var defaultImage = new List<CarImage> { new CarImage { ImagePath = path } };
+
+            return new SuccessDataResult<List<CarImage>>(defaultImage);
         }
 
         //[SecuredOperation("admin,carimage.add")]
@@ -93,12 +101,6 @@ namespace Business.Concrete
 
             return new SuccessResult(Messages.CarImageUpdated);
         }
-
-
-     
-
-
-
 
         [CacheAspect]
         [PerformanceAspect(5)]

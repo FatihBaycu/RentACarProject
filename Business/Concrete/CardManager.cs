@@ -6,6 +6,7 @@ using Business.Constants;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using Microsoft.EntityFrameworkCore.Design;
 
 namespace Business.Concrete
 {
@@ -21,6 +22,14 @@ namespace Business.Concrete
 
        public IResult Add(Card card)
        {
+
+           var result = _iCardDal.Get(p => p.CustomerId == card.CustomerId);
+
+           if (result != null)
+           {
+               if (result.CardNumber==card.CardNumber) return new SuccessResult();
+           }
+           
            _iCardDal.Add(card);
            return new SuccessResult("Kart Bilgileri Eklendi");
        }
