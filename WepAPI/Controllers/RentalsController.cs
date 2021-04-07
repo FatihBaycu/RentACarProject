@@ -28,7 +28,7 @@ namespace WepAPI.Controllers
         }
 
         [HttpGet("rentalstwo")]
-      public  IActionResult RentalsDetailTwo()
+        public IActionResult RentalsDetailTwo()
         {
             var result = _rentalService.getRentalsDetailsDtoTwo();
             if (result.Success)
@@ -69,7 +69,7 @@ namespace WepAPI.Controllers
         public IActionResult GetRentalByCarId(int carId)
         {
             var result = _rentalService.GetRentalByCarId(carId);
-            return result.Success ? (IActionResult) Ok(result) : BadRequest(result);
+            return result.Success ? (IActionResult)Ok(result) : BadRequest(result);
         }
 
         [HttpGet("getrentalbyid")]
@@ -78,5 +78,11 @@ namespace WepAPI.Controllers
             var result = _rentalService.GetById(rentalId);
             return result.Success ? (IActionResult)Ok(result) : BadRequest(result);
         }
+
+        //[HttpGet("getrentalsbycustomer")]
+        //public IActionResult GetRentalsByCustomerId(int customerId)
+        //{
+        //    var result;
+        //}
     }
 }

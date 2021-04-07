@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Text;
 using Core.DataAccess;
 using Entities.Concrete;
@@ -11,6 +12,7 @@ namespace DataAccess.Abstract
     {
         List<RentalsDetailsDto> getRentalsDetail();
         List<RentalsDetailsDtoTwo> getRentalsDetailsDtoTwo();
+        List<RentalsByCustomerDto> getRentalsByCustomerIdDto(Expression<Func<Rental, bool>> filter);
 
     }
 }

@@ -78,6 +78,12 @@ namespace Business.Concrete
             return new SuccessDataResult<List<RentalsDetailsDtoTwo>>(_rentalDal.getRentalsDetailsDtoTwo(), true, Messages.Listed);
         }
 
+        public IDataResult<List<RentalsByCustomerDto>> getRentalsByCustomerIdDto(int customerId)
+        {
+            return new SuccessDataResult<List<RentalsByCustomerDto>>(
+                _rentalDal.getRentalsByCustomerIdDto(p => p.CustomerId == customerId), true, Messages.Listed);
+        }
+
         public IDataResult<Rental> GetById(int rentalId)
         {
             var result = _rentalDal.Get(p => p.Id == rentalId);

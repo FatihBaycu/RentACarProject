@@ -37,7 +37,7 @@ namespace WepAPI.Controllers
             var result = _customerService.Add(customer);
             return result.Success ? (IActionResult)Ok(result) : BadRequest(result);
         }
-        [HttpPost("updatecustomer")]
+        [HttpPut("updatecustomer")]
         public IActionResult UpdateCustomer(Customer customer)
         {
             var result = _customerService.Update(customer);
