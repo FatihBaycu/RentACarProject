@@ -41,21 +41,9 @@ namespace Business.Concrete
         }
 
         [SecuredOperation("car.add,admin")]
-        //[ValidationAspect(typeof(CarValidator))]
+        [ValidationAspect(typeof(CarValidator))]
         public IResult Add(Car car)
         {
-
-            //if (car.Description.Length <= 2)
-            //{
-            //    Console.WriteLine("Açıklama uzunluğu 2 harfden uzun olmalıdır.");
-            //    return new ErrorResult(Messages.CarNotAdded);
-            //}
-            //else if (car.DailyPrice <= 1)
-            //{
-            //    Console.WriteLine("Günlük Fiyat 0 TL den büyük olmalıdır.");
-            //    return new ErrorResult(Messages.CarNotAdded);
-
-            //}
 
             
                 _iCarDal.Add(car);
@@ -74,7 +62,6 @@ namespace Business.Concrete
         {
             if (DateTime.Now.Hour == 3)
             {
-                //return new ErrorDataResult<List<Car>>(Messages.NotListed);
                 return new ErrorDataResult<List<Car>>("Saat 3 de bakımdayız.");
             }
             return new SuccessDataResult<List<Car>>(_iCarDal.GetAll(), Messages.Listed);
@@ -123,11 +110,7 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Car>>(_iCarDal.GetAll(c => c.ColorId == colorId), Messages.Listed);
         }
 
-        //public IDataResult<List<CarDetailsDto>> GetCarsByColorId(int colorId)
-        //{
-        //    return new SuccessDataResult<List<Car>>(_carDal.GetAll(c => c.ColorID == colorId), Messages.Listed);
-        //}
-
+      
         public IResult TransactionalOperation(Car car)
         {
             _iCarDal.Update(car);

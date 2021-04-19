@@ -12,6 +12,7 @@ namespace Entities.DTOs
         public int  BrandId { get; set; }
         public int  ColorId { get; set; }
         public int  CarId { get; set; }
+        public int RentalId { get; set; }
         public string  FirstName { get; set; }
         public string  LastName { get; set; }
         public string  BrandName { get; set; }

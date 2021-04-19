@@ -79,10 +79,11 @@ namespace WepAPI.Controllers
             return result.Success ? (IActionResult)Ok(result) : BadRequest(result);
         }
 
-        //[HttpGet("getrentalsbycustomer")]
-        //public IActionResult GetRentalsByCustomerId(int customerId)
-        //{
-        //    var result;
-        //}
+        [HttpGet("getrentalsbycustomer")]
+        public IActionResult GetRentalsByCustomerId(int customerId)
+        {
+            var result = _rentalService.getRentalsByCustomerIdDto(customerId);
+            return result.Success ? (IActionResult) Ok(result) : BadRequest(result);
+        }
     }
 }

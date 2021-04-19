@@ -75,7 +75,7 @@ namespace DataAccess.Concrete.EntityFramework
                         BrandName = brand.BrandName,
                         ColorName = color.ColorName,
                         CarName = car.CarName,
-
+                        RentalId = rental.Id,
                         FirstName = user.FirstName,
                         LastName = user.LastName,
                         RentDate = rental.RentDate,
