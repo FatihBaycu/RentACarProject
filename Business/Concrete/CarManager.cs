@@ -40,12 +40,12 @@ namespace Business.Concrete
             return new SuccessDataResult<CarDetailsDto>(_iCarDal.GetCarDetailsById(c=>c.Id==carId));
         }
 
-        [SecuredOperation("car.add,admin")]
-        [ValidationAspect(typeof(CarValidator))]
+        //[SecuredOperation("car.add,admin")]
+       // [ValidationAspect(typeof(CarValidator))]
         public IResult Add(Car car)
         {
 
-            
+           
                 _iCarDal.Add(car);
                 return new SuccessResult(Messages.CarAdded);
             

@@ -86,7 +86,12 @@ namespace WepAPI
             {
                 app.UseDeveloperExceptionPage();
             }
-            app.UseCors(builder => builder.WithOrigins("http://localhost:4200").AllowAnyHeader().AllowAnyMethod());
+            app.UseCors(builder =>
+            {
+                builder.WithOrigins("http://localhost:4200").AllowAnyHeader().AllowAnyMethod();
+                //builder.WithOrigins("http://localhost:61808").AllowAnyHeader().AllowAnyMethod();
+            });
+           
 
             app.ConfigureCustomExceptionMiddleware();
 
