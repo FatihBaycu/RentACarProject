@@ -43,20 +43,17 @@ namespace Business.Concrete
         //[SecuredOperation("car.add,admin")]
        // [ValidationAspect(typeof(CarValidator))]
         public IResult Add(Car car)
-        {
-
-           
-                _iCarDal.Add(car);
-                return new SuccessResult(Messages.CarAdded);
+        {   
+          _iCarDal.Add(car);
+          return new SuccessResult(Messages.CarAdded);
             
         }
 
         public IResult Delete(Car car)
         {
-
             _iCarDal.Delete(car);
             return new SuccessResult(Messages.CarDeleted);
-        }//BU MANAGER 
+        }
 
         public IDataResult<List<Car>> GetAll()
         {

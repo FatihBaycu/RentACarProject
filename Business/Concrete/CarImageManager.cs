@@ -39,7 +39,7 @@ namespace Business.Concrete
             var path = "Uploads/Images/CarImages/defaultImage.png";
             var defaultImage = new List<CarImage> { new CarImage { ImagePath = path } };
 
-            return new SuccessDataResult<List<CarImage>>(defaultImage);
+            return new SuccessDataResult<List<CarImage>>(defaultImage,"Listelendi");
         }
 
         //[SecuredOperation("admin,carimage.add")]
