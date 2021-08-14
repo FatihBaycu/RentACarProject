@@ -16,6 +16,29 @@ namespace DataAccess.Concrete.EntityFramework
 
       
 
+        // public List<CustomerDetailsDto> getCustomerDetails(Expression<Func<Customer, bool>> filter=null)
+        // {
+        //     using (RentACarContext context = new RentACarContext())
+        //     {
+        //         var result = from customer in filter is null? context.Customers: context.Customers.Where(filter)
+        //             join user in context.Users
+        //                 on customer.UserId equals user.Id
+        //             select new CustomerDetailsDto
+        //             {
+        //                 CompanyName = customer.CompanyName,
+        //                 FirstName = user.FirstName,
+        //                 LastName = user.LastName,
+        //                 Email = user.Email,
+        //                 UserId = user.Id,
+        //                 CustomerId = customer.CustomerId,
+        //                 Status = user.Status,
+        //                 CustomerFindexPoint = (int)customer.CustomerFindexPoint
+        //             };
+        //         return result.ToList();
+        //     }
+        // }
+
+        
         public List<CustomerDetailsDto> getCustomerDetails(Expression<Func<Customer, bool>> filter=null)
         {
             using (RentACarContext context = new RentACarContext())
@@ -37,7 +60,7 @@ namespace DataAccess.Concrete.EntityFramework
                 return result.ToList();
             }
         }
-
+        
         public CustomerDetailsDto getCustomerDetailById(Expression<Func<Customer, bool>> filter)
         {
             using (RentACarContext context = new RentACarContext())

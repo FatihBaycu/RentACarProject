@@ -1,4 +1,5 @@
-﻿USE [RentACar]
+﻿CREATE DATABASE [RentACar]
+USE [RentACar]
 GO
 /****** Object:  Table [dbo].[Brands]    Script Date: 8.04.2021 22:04:24 ******/
 SET ANSI_NULLS ON

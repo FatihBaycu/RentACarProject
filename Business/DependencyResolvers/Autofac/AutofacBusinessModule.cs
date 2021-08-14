@@ -10,6 +10,7 @@ using Core.Utilities.Interseptors;
 using Core.Utilities.Security.JWT;
 using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
+using MapsterMapper;
 using Microsoft.AspNetCore.Http;
 
 namespace Business.DependencyResolvers.Autofac
@@ -46,6 +47,8 @@ namespace Business.DependencyResolvers.Autofac
             builder.RegisterType<EfCardDal>().As<ICardDal>().SingleInstance();
 
 
+            builder.RegisterType<Mapper>().As<IMapper>().SingleInstance();
+            
             builder.RegisterType<HttpContextAccessor>().As<IHttpContextAccessor>();
 
             var assembly = System.Reflection.Assembly.GetExecutingAssembly();

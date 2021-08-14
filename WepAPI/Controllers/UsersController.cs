@@ -71,5 +71,13 @@ namespace WepAPI.Controllers
             }
             return BadRequest(result);
         }
+        
+        
+        [HttpGet("get-user-by-email")]
+        public IActionResult GetByEmail(string email)
+        {
+            var result = _iUserService.GetUserByEmail(email);
+            return result.Success ? Ok(result) : BadRequest(result);
+        }
     }
 }

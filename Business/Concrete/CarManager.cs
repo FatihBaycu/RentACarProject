@@ -8,6 +8,7 @@ using Business.Constants;
 using Business.ValidationRules.FluentValidations;
 using Core.Aspects.Autofac.Caching;
 using Core.Aspects.Autofac.Performance;
+using Core.Aspects.Autofac.Transaction;
 using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
@@ -69,6 +70,7 @@ namespace Business.Concrete
             return new SuccessDataResult<List<CarDetailsDto>>(_iCarDal.GetCarDetails());
         }
 
+        //[SecuredOperation("car.list")]
         public IDataResult<List<CarDetailsDto>> GetCarDetails()
         {
             return new SuccessDataResult<List<CarDetailsDto>>(_iCarDal.GetCarDetails());
@@ -107,7 +109,7 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Car>>(_iCarDal.GetAll(c => c.ColorId == colorId), Messages.Listed);
         }
 
-      
+      [TransactionScopeAspect]
         public IResult TransactionalOperation(Car car)
         {
             _iCarDal.Update(car);

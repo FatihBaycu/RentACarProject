@@ -38,6 +38,15 @@ namespace Business.Concrete
                 Status = true
             };
             _userService.Add(user);
+
+            var customer = new Customer
+            {
+                UserId = user.Id,
+                CompanyName = "A",
+                CustomerFindexPoint = 100
+            };
+            _iCustomerService.Add(customer);
+            
             return new SuccessDataResult<User>(user, Messages.UserRegistered);
         }
         

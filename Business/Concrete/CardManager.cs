@@ -22,15 +22,14 @@ namespace Business.Concrete
 
        public IResult Add(Card card)
        {
+            var result = _iCardDal.Get(p => p.CardNumber == card.CardNumber&&p.CustomerId==card.CustomerId);
 
-           var result = _iCardDal.Get(p => p.CustomerId == card.CustomerId);
+            if (result != null)
+            {
+                if (result.CardNumber == card.CardNumber) return new SuccessResult();
+            }
 
-           if (result != null)
-           {
-               if (result.CardNumber==card.CardNumber) return new SuccessResult();
-           }
-           
-           _iCardDal.Add(card);
+            _iCardDal.Add(card);
            return new SuccessResult("Kart Bilgileri Eklendi");
        }
 
