@@ -1,6 +1,10 @@
-﻿namespace DataAccess.Concrete.EntityFramework
+﻿using Core.DataAccess;
+using DataAccess.Abstract;
+using Entities.Concrete;
+
+namespace DataAccess.Concrete.EntityFramework
 {
-    public class EfUserProfilePictureDal
+    public class EfUserProfilePictureDal:EfEntityRepositoryBase<UserProfilePicture,RentACarContext>,IUserProfilePictureDal
     {
         
     }

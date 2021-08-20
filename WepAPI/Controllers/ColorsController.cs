@@ -25,50 +25,36 @@ namespace WepAPI.Controllers
         public IActionResult GetAll()
         {
             var result = _colorService.GetAll();
-            if (result.Success)
-                {
-                    return (IActionResult)Ok(result);
-                }
-
-                else { return BadRequest(result); }
-
+            return result.Success ? Ok(result) : BadRequest(result);
         }
 
         [HttpPost("addcolor")]
         public IActionResult AddColor(Color color)
         {
             var result = _colorService.Add(color);
-            return result.Success ? (IActionResult)Ok(result) : BadRequest(result);
+            return result.Success ? Ok(result) : BadRequest(result);
         }
         [HttpPut("updatecolor")]
         public IActionResult UpdateColor(Color color)
         {
             var result = _colorService.Update(color);
-            if (result.Success) {return Ok(result); }
-                
-            else {return BadRequest(result); }
-                
+            return result.Success ? Ok(result) : BadRequest(result);
+
         }
 
         [HttpPost("deletecolor")]
         public IActionResult DeleteColor(Color color)
         {
             var result = _colorService.Delete(color);
-            return result.Success ? (IActionResult)Ok(result) : BadRequest(result);
+            return result.Success ? Ok(result) : BadRequest(result);
         }
 
         [HttpGet("getcolorbyid")]
         public IActionResult getColorById(int colorId)
         {
             var result = _colorService.GetByColorId(colorId);
-            if (result.Success)
-            {
-                return Ok(result);
-            }
-            else
-            {
-                return BadRequest(result);
-            }
+            return result.Success ? Ok(result) : BadRequest(result);
+
         }
 
     }

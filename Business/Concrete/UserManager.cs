@@ -7,6 +7,7 @@ using Core.Entities.Concrete;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using Microsoft.AspNetCore.Http;
 
 namespace Business.Concrete
 {
@@ -74,5 +75,7 @@ namespace Business.Concrete
             var result = _userDal.Get(p => p.Id == id);
             return new SuccessDataResult<User>(result);
         }
+
+   
     }
 }

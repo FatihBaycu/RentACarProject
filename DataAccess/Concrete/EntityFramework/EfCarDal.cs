@@ -15,13 +15,13 @@ namespace DataAccess.Concrete.EntityFramework
 {
     public class EfCarDal : EfEntityRepositoryBase<Car, RentACarContext>, ICarDal
     {
-        private IMapper _iMapper;
-
-        public EfCarDal(IMapper _mapper)
-        {
-            _iMapper = _mapper;
-        }
-        
+        // private IMapper _iMapper;
+        //
+        // public EfCarDal(IMapper _mapper)
+        // {
+        //     _iMapper = _mapper;
+        // }
+        //
         public List<CarDetailsDto> getCarDetail()
         {
             using (RentACarContext context = new RentACarContext())

@@ -16,12 +16,14 @@ namespace Business.Concrete
     {
         private IUserService _userService;
         private ITokenHelper _tokenHelper;
+        private IUserProfilePictureService _userProfilePictureService;
         private ICustomerService _iCustomerService;
-        public AuthManager(IUserService userService, ITokenHelper tokenHelper,ICustomerService _customerService)
+        public AuthManager(IUserService userService, ITokenHelper tokenHelper,ICustomerService _customerService, IUserProfilePictureService userProfilePictureService)
         {
             _userService = userService;
             _tokenHelper = tokenHelper;
             _iCustomerService = _customerService;
+            _userProfilePictureService = userProfilePictureService;
         }
 
         public IDataResult<User> Register(UserForRegisterDto userForRegisterDto, string password)
@@ -46,6 +48,14 @@ namespace Business.Concrete
                 CustomerFindexPoint = 100
             };
             _iCustomerService.Add(customer);
+
+            var userProfilePicture = new UserProfilePicture
+            {
+                UserId = user.Id,
+                PicturePath = "Uploads/Images/CarImages/defaultProfilePicture.png"
+
+            };
+            _userProfilePictureService.AddWithoutPicture(userProfilePicture);
             
             return new SuccessDataResult<User>(user, Messages.UserRegistered);
         }

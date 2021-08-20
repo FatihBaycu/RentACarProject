@@ -45,6 +45,11 @@ namespace Business.DependencyResolvers.Autofac
 
             builder.RegisterType<CardManager>().As<ICardService>().SingleInstance();
             builder.RegisterType<EfCardDal>().As<ICardDal>().SingleInstance();
+            
+            builder.RegisterType<UserProfilePictureManager>().As<IUserProfilePictureService>().SingleInstance();
+            builder.RegisterType<EfUserProfilePictureDal>().As<IUserProfilePictureDal>().SingleInstance();
+            
+            
 
 
             builder.RegisterType<Mapper>().As<IMapper>().SingleInstance();

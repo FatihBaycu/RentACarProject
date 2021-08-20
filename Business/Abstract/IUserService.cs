@@ -5,6 +5,7 @@ using Core.Entities.Concrete;
 using Core.Utilities.Results;
 using Entities.Concrete;
 using Entities.DTOs;
+using Microsoft.AspNetCore.Http;
 
 namespace Business.Abstract
 {
@@ -21,6 +22,8 @@ namespace Business.Abstract
        
        User GetByMail(string email);
        IDataResult<User> GetById(int id);
+
+       // IResult AddProfilePicture(int id,IFormFile file);
 
        //IDataResult<List<User>> GetCarsByBrandId(int brandId);
        //IDataResult<List<User>> GetCarsByColorId(int colorId);

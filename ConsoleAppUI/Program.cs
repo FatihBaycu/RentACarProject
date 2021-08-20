@@ -11,7 +11,7 @@ using DataAccess.Concrete.InMemory;
 using Entities.Concrete;
 using Microsoft.Data.SqlClient;
 
-namespace ConsoleUI
+namespace ConsoleAppUI
 {
     class Program
     {

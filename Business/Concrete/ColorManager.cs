@@ -22,16 +22,16 @@ namespace Business.Concrete
         [ValidationAspect(typeof(ColorValidator))]
         public IResult Add(Color color)
         {
-            if (color.ColorName.Length<2)
-            {
-                return new ErrorResult("Renk adı  En az 3 harfli olmalıdır.");
-            }
-            else
-            {
+            // if (color.ColorName.Length<2)
+            // {
+            //     return new ErrorResult("Renk adı  En az 3 harfli olmalıdır.");
+            // }
+            // else
+            // {
                 _colorDal.Add(color);
             return new SuccessResult(Messages.Added);
                 
-            }
+            //}
             
         }
         public IResult Update(Color color)

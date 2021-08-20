@@ -1,6 +1,9 @@
-﻿namespace DataAccess.Abstract
+﻿using Core.DataAccess;
+using Entities.Concrete;
+
+namespace DataAccess.Abstract
 {
-    public interface IUserProfilePictureDal
+    public interface IUserProfilePictureDal:IEntityRepository<UserProfilePicture>
     {
         
     }
