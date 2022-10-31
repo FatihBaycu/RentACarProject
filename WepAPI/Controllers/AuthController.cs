@@ -79,6 +79,18 @@ namespace WepAPI.Controllers
 
             return BadRequest(result);
         }
+
+        [HttpPost("password-reset")]
+        public IActionResult PasswordReset(PasswordResetDto passwordResetDto)
+        {
+            var result = _authService.PasswordReset(passwordResetDto);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+
+            return BadRequest(result);
+        }
     }
 }
 

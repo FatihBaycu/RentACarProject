@@ -18,12 +18,14 @@ namespace Business.Concrete
         private ITokenHelper _tokenHelper;
         private IUserProfilePictureService _userProfilePictureService;
         private ICustomerService _iCustomerService;
-        public AuthManager(IUserService userService, ITokenHelper tokenHelper,ICustomerService _customerService, IUserProfilePictureService userProfilePictureService)
+        private IResetPasswordCodeService _resetPasswordCodeService;
+        public AuthManager(IUserService userService, ITokenHelper tokenHelper, ICustomerService _customerService, IUserProfilePictureService userProfilePictureService, IResetPasswordCodeService resetPasswordCodeService)
         {
             _userService = userService;
             _tokenHelper = tokenHelper;
             _iCustomerService = _customerService;
             _userProfilePictureService = userProfilePictureService;
+            _resetPasswordCodeService = resetPasswordCodeService;
         }
 
         public IDataResult<User> Register(UserForRegisterDto userForRegisterDto, string password)
@@ -56,10 +58,10 @@ namespace Business.Concrete
 
             };
             _userProfilePictureService.AddWithoutPicture(userProfilePicture);
-            
+
             return new SuccessDataResult<User>(user, Messages.UserRegistered);
         }
-        
+
         public IDataResult<User> Login(UserForLoginDto userForLoginDto)
         {
             var userToCheck = _userService.GetByMail(userForLoginDto.Email);
@@ -73,12 +75,8 @@ namespace Business.Concrete
                 return new ErrorDataResult<User>(Messages.PasswordError);
             }
 
-            return new SuccessDataResult<User>(userToCheck,true, Messages.SuccessfulLogin);
+            return new SuccessDataResult<User>(userToCheck, true, Messages.SuccessfulLogin);
         }
-        
-        
-        
-        
 
         public IDataResult<UserForUpdateDto> Update(UserForUpdateDto userForUpdate)
         {
@@ -90,9 +88,9 @@ namespace Business.Concrete
                 Email = userForUpdate.Email,
                 FirstName = userForUpdate.FirstName,
                 LastName = userForUpdate.LastName,
-                
+
             };
-        
+
             _userService.Update(user);
 
             var customer = new Customer
@@ -141,5 +139,30 @@ namespace Business.Concrete
             _userService.Update(userToCheck);
             return new SuccessResult("Parola Değişti.");
         }
+
+        public IResult PasswordReset(PasswordResetDto passwordResetDto)
+        {
+
+            _resetPasswordCodeService.ConfirmResetCode(passwordResetDto.Code);
+           var resetPassword= _resetPasswordCodeService.GetByCode(passwordResetDto.Code);
+            resetPassword.Data.IsActive = false;
+
+            byte[] passwordHash, passwordSalt;
+            var userToCheck = _userService.GetById(passwordResetDto.UserId).Data;
+            if (userToCheck == null)
+            {
+                return new ErrorResult(Messages.UserNotFound);
+            }
+
+            HashingHelper.CreatePasswordHash(passwordResetDto.NewPassword, out passwordHash, out passwordSalt);
+            userToCheck.PasswordHash = passwordHash;
+            userToCheck.PasswordSalt = passwordSalt;
+            _userService.Update(userToCheck);
+            _resetPasswordCodeService.Update(resetPassword.Data);
+            return new SuccessResult("Parola Değişti.");
+        }
+        
+
+        
     }
 }

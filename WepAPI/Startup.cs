@@ -14,13 +14,8 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Http;
 
-using Core.DependencyResolvers;
-using Core.Extensions;
-using Core.Utilities.Security.Encryption;
 using Core.Utilities.Security.JWT;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Http;
-using Microsoft.IdentityModel.Tokens;
+
 
 namespace WepAPI
 {

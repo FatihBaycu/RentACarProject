@@ -7,6 +7,7 @@ using Business.Abstract;
 using Business.Concrete;
 using Castle.DynamicProxy;
 using Core.Utilities.Interseptors;
+using Business.Mail;
 using Core.Utilities.Security.JWT;
 using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
@@ -48,6 +49,11 @@ namespace Business.DependencyResolvers.Autofac
             
             builder.RegisterType<UserProfilePictureManager>().As<IUserProfilePictureService>().SingleInstance();
             builder.RegisterType<EfUserProfilePictureDal>().As<IUserProfilePictureDal>().SingleInstance();
+            
+            builder.RegisterType<ResetPasswordCodeManager>().As<IResetPasswordCodeService>().SingleInstance();
+            builder.RegisterType<EfResetPasswordCodeDal>().As<IResetPasswordCodeDal>().SingleInstance();
+
+            builder.RegisterType<MailManager>().As<IMailService>().SingleInstance();
             
             
 

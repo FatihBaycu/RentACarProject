@@ -2,11 +2,15 @@
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using Business.Abstract;
 using Core.Entities.Concrete;
+using Business.Mail;
 using Entities.Concrete;
+using Core.Utilities.Results;
+using Entities.DTOs;
 
 namespace WepAPI.Controllers
 {
@@ -15,10 +19,14 @@ namespace WepAPI.Controllers
     public class UsersController : ControllerBase
     {
         private IUserService _iUserService;
+        private IMailService _mailService;
+        private IResetPasswordCodeService _resetPasswordCodeService;
 
-        public UsersController(IUserService ıUserService)
+        public UsersController(IUserService ıUserService, IMailService mailService, IResetPasswordCodeService resetPasswordCodeService)
         {
             _iUserService = ıUserService;
+            _mailService = mailService;
+            _resetPasswordCodeService = resetPasswordCodeService;
         }
 
 
@@ -79,5 +87,28 @@ namespace WepAPI.Controllers
             var result = _iUserService.GetUserByEmail(email);
             return result.Success ? Ok(result) : BadRequest(result);
         }
+
+
+
+        [HttpPost("send-password-reset-mail")]
+        public IActionResult SendEmail(String email)
+        {
+            Email newEmail = new Email();
+            newEmail.EmailAddress = email;
+         
+            var result= _mailService.SendPasswordResetMailAsync(newEmail);
+            return result.Success ? Ok(result) : BadRequest(result);
+        }
+
+
+        [HttpPost("confirm-password-reset-code")]
+        public IActionResult ConfirmPasswordResetCode(ConfirmPasswordResetDto confirmPasswordResetDto)
+        {                   
+            var result= _resetPasswordCodeService.ConfirmResetCodeWithUserId(confirmPasswordResetDto);
+            return result.Success ? Ok(result) : BadRequest(result);
+        }
+
+
+       
     }
 }
